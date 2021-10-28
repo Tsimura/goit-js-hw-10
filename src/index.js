@@ -39,4 +39,4 @@ const country = fetch('https://restcountries.com/v3.1/name/peru')
 // languages - массив языков
 
 
-https://youtu.be/qjiUZOLJ1lA?t=3248
+// https://youtu.be/qjiUZOLJ1lA?t=3248
