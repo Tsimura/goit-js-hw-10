@@ -1,42 +1,30 @@
+import FetchCountriesApi from './fetchCountries';
+const debounce = require('lodash.debounce');
 import './css/styles.css';
-const ref = {
+
+const refs = {
   inputEl: document.querySelector('#search-box'),
   countryList: document.querySelector('country-list'),
   countryInfo: document.querySelector('country-info'),
 };
-console.log('ref.inputEl:', ref.inputEl);
-// console.log('ref.countryList:', ref.countryList);
-// console.log('ref.countryInfo:', ref.countryInfo);
+console.log('refs.inputEl:', refs.inputEl);
+// console.log('refs.countryList:', refs.countryList);
+// console.log('refs.countryInfo:', refs.countryInfo);
+const fetchCountriesApi = new FetchCountriesApi();
 
-const DEBOUNCE_DELAY = 300;
+// const DEBOUNCE_DELAY = 300;
+const DEBOUNCE_DELAY = 500;
 
-// function fetchCountries(name) {
-//   return fetch(`https://restcountries.com/v3.1/name/${name}`)
-//     .then(response => {
-//       // console.log(response.json());
-//       return response.json();
-//     })
-//     .catch(error => console.log(error));
-// }
+refs.inputEl.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
 
-// fetchCountries(Peru);
+function searchCountry(event) {
+  fetchCountriesApi.searchParameter = document.getElementById('search-box').value;
+  // console.log(searchValue);
+  fetchCountriesApi.fetchCountries();
+}
 
-const country = fetch('https://restcountries.com/v3.1/name/peru')
-  .then(response => {
-    // console.log(response.json());
-    return response.json();
-  })
-  .then(country => console.log(Object.values(country)))
-  .catch(error => console.log(error));
-
-// console.log('country:', country);
-
-// Тебе нужны только следующие свойства:
 // name.official - полное имя страны
 // capital - столица
 // population - население
 // flags.svg - ссылка на изображение флага
 // languages - массив языков
-
-
-// https://youtu.be/qjiUZOLJ1lA?t=3248
