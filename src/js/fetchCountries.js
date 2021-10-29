@@ -25,3 +25,5 @@ export default class FetchCountriesApi {
 }
 
 // fetch('https://restcountries.com/v3.1/all?fields=name,capital,population,flags.svg,languages')
+
+// https://youtu.be/Fh8d14cY9AM?t=3124

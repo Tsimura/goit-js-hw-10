@@ -1,4 +1,5 @@
-import FetchCountriesApi from './fetchCountries';
+import FetchCountriesApi from '../src/js/fetchCountries';
+import countryTemplate from '../src/templates/country-list.hbs';
 const debounce = require('lodash.debounce');
 import './css/styles.css';
 
@@ -23,6 +24,20 @@ function searchCountry(event) {
   fetchCountriesApi.fetchCountries();
 }
 
+function renderListCountry(country) {
+  refs.countryInfo.innerHTML = '';
+  if (country.length === 1) {
+    console.log(country.length === 1);
+    const newCountry = country[0];
+    refs.countryInfo.insertAdjacentHTML('beforeend', countryTemplate(newCountry));
+  }
+  if (country.length <= 10 && country.length !== 1) {
+    refs.countryList.insertAdjacentHTML(
+      'beforeend',
+      countryTemplate(country.map(country => country.name)),
+    );
+  }
+}
 // name.official - полное имя страны
 // capital - столица
 // population - население
