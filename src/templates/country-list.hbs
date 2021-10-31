@@ -1,59 +1,9 @@
-{{!-- {{#each this}}
-  <li>{{this}}</li>
-{{/each}} --}}
-
-{{#each this}}
-  <div class='country__title'>
-    <img src='{{flags.svg}}' width='36' height='24' alt='{{name.official}}' class='country__img' />
-    <h2 class='country__title-name'>{{name.official}}</h2>
-  </div>
-
-  <div class='country__box'>
-    <div class='country__content'>
-      <p class='country__text'>
-        <span class='accent'>Capital:</span>
-        {{capital}}
-      </p>
-      <p class='country__text'>
-        <span class='accent'>Population:</span>
-        {{population}}
-      </p>
-      <p class='country__text'>
-        <span class='accent'>Languages:</span>
-        <ul class='country__languages-list'>
-          {{#each languages.name}}
-            <li>{{language.name}}</li>
-          {{/each}}
-        </ul>
-      </p>
-
-    </div>
-
-  </div>
-{{/each}}
-
-{{!-- {{#each this}}
-  <h2 class='country__title-name'>{{name.official}}</h2>
-  <div class='country__box'>
-    <div class='country__content'>
-      <p class='country__text'>
-        <span>Capital:</span>
-        {{capital}}
-      </p>
-      <p class='country__text'>
-        <span>Population:</span>
-        {{population}}
-      </p>
-      <p class='country__text'>
-        <span>Languages:</span>
-        <ul class='country__languages-list'>
-          {{#each languages.name}}
-            <li>{{language.name}}</li>
-          {{/each}}
-        </ul>
-      </p>
-
-    </div>
-    <img src='{{flags.svg}}' width='36' alt='{{name.official}}' class='country__img' />
-  </div>
-{{/each}} --}}
+<li class='country-list__info'>
+  <img
+    src='{{country.flags.svg}}'
+    width='36'
+    height='24'
+    alt='{{country.name.official}}'
+    class='country__img'
+  />
+  {{country.name.official}}</li>
