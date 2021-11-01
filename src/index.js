@@ -28,6 +28,13 @@ function renderCountryCard(country) {
   refs.countryInfo.innerHTML = markup;
   refs.inputEl.value = '';
 }
+function renderCountriesList(countries) {
+  countries.forEach(country => {
+    // console.log(country);
+    const markup = fetchCountriesList(country);
+    refs.countryList.insertAdjacentHTML('beforeend', markup);
+  });
+}
 
 function onFetchError(error) {
   Notiflix.Notify.failure('Oops, there is no country with that name!!!');
@@ -36,24 +43,25 @@ function onFetchError(error) {
 
 function createCountryList(numberOfCountries) {
   // console.log(numberOfCountries);
+
   if (numberOfCountries.length <= 1) {
     clear();
-    // console.log(country.name.official);
-    // console.log(numberOfCountries[0].languages.name);
     renderCountryCard(numberOfCountries);
   }
   if (numberOfCountries.length > 1 && numberOfCountries.length <= 10) {
     clear();
-    numberOfCountries.forEach(country => {
-      const markup = fetchCountriesList(country.name.official);
-      // console.log(country.name.official);
-      refs.countryList.insertAdjacentHTML(
-        'beforeend',
-        `<li class="country-list__info">
-        <img src='${country.flags.svg}' width='36' height='24' alt='${country.name.official}' class='country__img' />
-        ${country.name.official}</li>`,
-      );
-    });
+    renderCountriesList(numberOfCountries);
+    //========= було:
+    // numberOfCountries.forEach(country => {
+    //   const markup = fetchCountriesList(country.name.official);
+    //   console.log(country.name.official);
+    //   refs.countryList.insertAdjacentHTML(
+    //     'beforeend',
+    //     `<li class="country-list__info">
+    //     <img src='${country.flags.svg}' width='36' height='24' alt='${country.name.official}' class='country__img' />
+    //     ${country.name.official}</li>`,
+    //   );
+    // });
   }
   if (numberOfCountries.length > 10) {
     clear();
