@@ -14,7 +14,6 @@ refs.inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   const form = e.currentTarget;
   let searchQuery = document.getElementById('search-box').value.trim();
-  // console.log(searchQuery);
   if (!searchQuery) {
     onFetchError();
     return;
@@ -24,26 +23,22 @@ function onSearch(e) {
 
 function renderCountryCard(country) {
   const markup = countryTemplate(country);
-  // console.log(markup);
+
   refs.countryInfo.innerHTML = markup;
-  refs.inputEl.value = '';
 }
 function renderCountriesList(countries) {
   countries.forEach(country => {
-    // console.log(country);
     const markup = fetchCountriesList(country);
     refs.countryList.insertAdjacentHTML('beforeend', markup);
   });
 }
 
 function onFetchError(error) {
+  clear();
   Notiflix.Notify.failure('Oops, there is no country with that name!!!');
-  // console.log('Oops, there is no country with that name!!!');
 }
 
 function createCountryList(numberOfCountries) {
-  // console.log(numberOfCountries);
-
   if (numberOfCountries.length <= 1) {
     clear();
     renderCountryCard(numberOfCountries);
@@ -51,22 +46,10 @@ function createCountryList(numberOfCountries) {
   if (numberOfCountries.length > 1 && numberOfCountries.length <= 10) {
     clear();
     renderCountriesList(numberOfCountries);
-    //========= було:
-    // numberOfCountries.forEach(country => {
-    //   const markup = fetchCountriesList(country.name.official);
-    //   console.log(country.name.official);
-    //   refs.countryList.insertAdjacentHTML(
-    //     'beforeend',
-    //     `<li class="country-list__info">
-    //     <img src='${country.flags.svg}' width='36' height='24' alt='${country.name.official}' class='country__img' />
-    //     ${country.name.official}</li>`,
-    //   );
-    // });
   }
   if (numberOfCountries.length > 10) {
     clear();
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-    // console.log('Too many matches found. Please enter a more specific name.');
   }
 }
 function clear() {
